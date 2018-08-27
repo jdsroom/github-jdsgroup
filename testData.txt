@@ -1,0 +1,25 @@
+  1    1  12  (A12)   Line name                                                 
+  2   14  17  (I4)    Sequence number                                           
+  3   19  23  (I5)    Shotpoint                                                 
+  4   25  32  (F8.1)  X coordinate (m)                                          
+  5   34  42  (F9.1)  Y coordinate (m)                                          
+  6   44  53  (F10.7) Latitude                                                  
+  7   55  65  (F11.7) Longitude                                                 
+  8   67  70  (I4)    Julian Day (YDDD)                                         
+  9   72  73  (I2)    Hour                                                      
+ 10   75  76  (I2)    Minutes                                                   
+ 11   78  79  (I2)    Seconds                                                   
+ 12   81  88  (I8)    Seconds from midnight ***                                 
+ 13   90  95  (F6.1)  Raw bathymetry (m +ve)                                    
+ 14   97 104  (F8.2)  Processed bathymetry (m -ve)                              
+ 15  106 113  (F8.2)  Levelled bathymetry (m -ve)                               
+ 16  115 121  (F7.2)  Raw gravity (c.u)                                         
+ 17  123 128  (F6.1)  Raw Eotvos correction (mGal)                              
+ 18  130 135  (F6.2)  Filtered, phase corrected Eotvos correction (mGal)        
+ 19  137 143  (F7.2)  Edited, pre- Eotvos corrected gravity (mGal)              
+ 20  145 151  (F7.2)  Eotvos corrected gravity (mGal)                           
+ 21  153 158  (F6.2)  Latitude corrected gravity (mGal)                         
+ 22  160 165  (F6.2)  Filtered free air gravity (mGal)                          
+ 23  167 172  (F6.2)  Levelled free air gravity (mGal)                          
+ 24  174 178  (F5.2)  Bouguer correction [2.00 g/cc] (mGal)                     
+ 25  180 184  (F5.2)  Bouguer [2.00 g/cc] gravity (mGal) 
