@@ -1,23 +1,29 @@
 /*
 Write a java program to find the largest number ‘L’ less than a given number ‘N’ which should not contain digits in given 
 number 'N'. For example, If 2867 is the given number, then you should find the largest number less than 2867 such that it 
-should not contain digits 2, 8, 6 , 7 in it. In this case, 1999 will be the answer
+should not contain digits 2, 8, 6 , 7 in it(irrespective of index). In this case, 1999 will be the answer
 */
+import java.util.*;
 class SmallerLargerNo 
 {
 	//This method will provide the resultant output
 	public static int smallerLargeNo(int number){
+	  int digit;
 	  int[] resultArray=intToArray(number);
-	  for(int i=1;i<resultArray.length;i++){
-	    if(resultArray[i]==9)
-           resultArray[i]=8;
-		else
-			resultArray[i]=9;
+	  Set<Integer> set=new HashSet();
+	  for(int a:resultArray){
+	    set.add(a);
 	  }
-	  if(resultArray[0]==1)
-		  resultArray[0]=0;
-	  else
+	  for(int i=1;i<resultArray.length;i++){
+		  digit=9;
+	      while(set.contains(digit)){
+		    digit--;
+		  }
+		  resultArray[i]=digit;
+	  }
 	  resultArray[0]=resultArray[0]-1;
+	  while(resultArray[0]>0&&set.contains(resultArray[0]))
+		  resultArray[0]-=1;
 	  return arrayToInt(resultArray);
 	}
 
@@ -48,9 +54,9 @@ class SmallerLargerNo
 	{
 		//Testing cases and output for different inputs 
 		System.out.println(smallerLargeNo(2867));//o/p->1999
-		System.out.println(smallerLargeNo(2869));//o/p->1998
-		System.out.println(smallerLargeNo(1869));//o/p->998
-		System.out.println(smallerLargeNo(9869));//o/p->8998
+		System.out.println(smallerLargeNo(2869));//o/p->1777
+		System.out.println(smallerLargeNo(1869));//o/p->777
+		System.out.println(smallerLargeNo(9869));//o/p->7777
 		System.out.println(smallerLargeNo(9999));//o/p->8888
 		System.out.println(smallerLargeNo(1));//o/p->0
 		System.out.println(smallerLargeNo(12));//o/p->9
