@@ -1,0 +1,34 @@
+Process to reduce memory consumption and increase persormance on java applications
+
+There is not much you can do about memory other than reducing the number of objects you create and trying making your object short-live, but still Java will use all the memory it is allowed for the best performance
+You should follow below two approaches to reduce memory consumption and increase persormance
+
+1. Avoiding frequent creation/deletion of objects.
+
+This in turn avoids JVM for invoking GC for cleanup process friquently as GC call ia a daemon thread execution call by jvm based on the un referenced objects available 
+in heap memory.
+
+2. Reduce the overall memory consumption of JVM
+
+This will be needed if your JVM will be running in an environment having high memory constraints.
+Understand API you are using on basis of memory use, eg. if you use String and modify it frequently you will
+end up creating as many instances as there are modifications. The same applies for auto boxed types.As these are immutable objects.
+You should know the flow of your app based on memory consumption so that you can optimize the permormance and reduce the memory consumptions
+by following the above 2 approaches.
+
+Try to keep a check on JVM memory size, you need to do the above mentioned points and also do the following
+
+Use Xmx and Xms flags while launching your VM and deliberately set their values to lower values than what might be needed and be on the lookout of OutOfMemoryError .
+
+If OutOfMemoryError happens which means you are over shooting the max VM size. Identify what is the cause and start tuning your object creation.
+
+use below commands to identify default Java heapsize in Windows with all details
+-->java -XX:+PrintFlagsFinal -version | findstr /i "HeapSize PermSize ThreadStackSize"
+
+Still you are not able to keep up with the above aproaches than go for JConsole or Visualvm
+These tools will easily help you to keep tracs of you jvm memory uses and other activities as stated below
+
+->Provide a CPU profiling.
+->Provide all info about Threads.
+->Provide the JVM Heap and the memory states.
+->Provide Info about the GC activities
