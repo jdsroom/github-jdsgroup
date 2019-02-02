@@ -1,3 +1,7 @@
+<b>
+Using this program you can merge multiple Excel files and even Excel file with multiple sheets into ome excel file
+</b>
+
 package com.excel.ExcelProj1;
 
 import java.io.File;
