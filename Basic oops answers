@@ -1,0 +1,13 @@
+1.) Interface is a fully unimplemented class,In which all methods are abstract and public by default till java 1.7v,
+means that all the method present inside interface have only declartion but not body,implementation class is responsible to provide
+body.it is use to provide all the rules for an application .Example - Take an example of Bank application ,as we know that
+all bank have same functionality but may be different behaviour so,for creation of Bank 
+application we can declare all the functionality inside an interface and its behaviour may varied from bank to bank. 
+Abstract class is a partially implemented class,means it may have abstract method.Basically we use abstract class to define common
+behaviour .For example -In bank application there are some common behaviour like withdraw and deposite,so we can define this funtionality
+inside an abstract class to overcome complexity problem.
+Concrete class is fully implemented class and we can not declare any abstract method inside it,means all the method present inside it
+have body.
+Example- We have best example present in collection framework to explain these concept is List interface .In list interface all
+functionality is declare inside it and it's direct implementaion class is Abstract list class, in which all common behaviour is present 
+inside it which is a abstract class.And ArryList ,LinkedList,Vector,etc are the concrete class.
