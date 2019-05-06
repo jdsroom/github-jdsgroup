@@ -1,0 +1,38 @@
+Reading input in controller from UI using Path Variable and queryparam
+========================================================================
+
+@Controller
+@RequestMapping(value="/users")
+public class UserController {
+
+	@Autowired
+	 HelloService helloService;
+	
+	@RequestMapping(value="/user1/{name}/{age}",method=RequestMethod.GET)
+	public ModelAndView welcomePath(@PathVariable("name")String name,@PathVariable("age")int age){
+		return new ModelAndView("welcomePage", "welcomeMsg", "Welcome "+name+"  age "+age);
+	}
+	
+	@RequestMapping(value="/user2/{name}/{age}",method=RequestMethod.GET)
+	public ModelAndView welcomePath(@PathVariable("name")String name,@PathVariable("age")int age,@RequestParam("country")String country){
+		return new ModelAndView("welcomePage", "welcomeMsg", "Welcome "+name+" age "+age+" belonging to country "+country);
+	}
+    
+    @RequestMapping(value="/user3",method=RequestMethod.GET)
+	public ModelAndView welcomePath1(@RequestParam("name")String name,@RequestParam("age")int age,@RequestParam("country")String country){
+		return new ModelAndView("welcomePage", "welcomeMsg", "Welcome "+name+" age "+age+" belonging to country "+country);
+	}
+}
+
+Request Url->
+
+for path variable->http://localhost:8081/SpringMVC/users/user1/abhinav/29
+for path var and query param->http://localhost:8081/SpringMVC/users/user2/abhinav/29?country=India
+for query param->http://localhost:8081/SpringMVC/users/user3?name=abhinav&age=29&country=India
+
+Note: Difference between both approach is seen at the request preperation
+
+While working with path param we don't need to pass param name in the request url, we pass just the value where as while 
+working with query param we need to pair both name and value in request url.As we can see in above code snippet
+
+Feel Free To Update the answer...Thanks
