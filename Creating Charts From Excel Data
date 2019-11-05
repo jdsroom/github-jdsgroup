@@ -1,0 +1,70 @@
+Project requirement : Based on last row data containing pass and fail inputs create percentage Pie chart
+
+depebdencies
+================================================
+<dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi</artifactId>
+	<version>3.15</version>
+</dependency>
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi-ooxml</artifactId>
+		<version>3.15</version>
+	</dependency>
+<dependency>
+    <groupId>org.jfree</groupId>
+    <artifactId>jfreechart</artifactId>
+    <version>1.0.15</version>
+</dependency>
+
+Snippet code 
+=============================================================
+public class PieChart {
+	        public static void main(String[] args) throws Exception{                
+	        	String excepPath = "C:\\Users\\Admin\\Documents\\PercentageSheet.xlsx";
+	        	excelDataTOPiChartConverter(excepPath);
+	        }
+	        
+	        
+	        public static void excelDataTOPiChartConverter(String excepPath)throws Exception {
+	        	FileInputStream chart_file_input = new FileInputStream(new File(excepPath));
+	        	XSSFWorkbook my_workbook = new XSSFWorkbook(chart_file_input);
+	        	XSSFSheet my_sheet = my_workbook.getSheetAt(0);
+	        	DefaultPieDataset my_pie_chart_data = new DefaultPieDataset();
+	        	int lastRowNo=my_sheet.getLastRowNum(); 
+	        	Row row1 = my_sheet.getRow(0);
+	        	Row row2= my_sheet.getRow(lastRowNo);
+	        	int no=1;
+	        	String chart_label="a";
+	            Number chart_data=0;
+	        	while(no<3){
+	        	Cell cell1=row1.getCell(no);
+	        	 chart_label=cell1.getStringCellValue();
+	        	Cell cell2=row2.getCell(no);
+	        	chart_data=cell2.getNumericCellValue();
+	        	 my_pie_chart_data.setValue(chart_label,chart_data);
+	        	 no++;
+	        	}
+	        	JFreeChart myPieChart=ChartFactory.createPieChart("Pass Fail Percentage",my_pie_chart_data,true,true,false);
+	        	
+	        	    int width=640;
+	                int height=480;
+	                float quality=1;
+	                ByteArrayOutputStream chart_out = new ByteArrayOutputStream();          
+	                ChartUtilities.writeChartAsJPEG(chart_out,quality,myPieChart,width,height);
+	                int my_picture_id = my_workbook.addPicture(chart_out.toByteArray(), Workbook.PICTURE_TYPE_JPEG);                
+	                chart_out.close();
+	                XSSFDrawing drawing = my_sheet.createDrawingPatriarch();
+	                ClientAnchor my_anchor = new XSSFClientAnchor();
+	                my_anchor.setCol1(4);
+	                my_anchor.setRow1(5);
+	                XSSFPicture  my_picture = drawing.createPicture(my_anchor, my_picture_id);
+	                my_picture.resize();
+	                chart_file_input.close();               
+	                String path =System.getProperty("user.home");
+	                FileOutputStream out = new FileOutputStream(new File(path+"\\Downloads\\PercentageChart.xlsx"));
+	                XSSFSheet newSheet = my_workbook.createSheet();
+	                my_workbook.write(out);
+	                out.close();            
+	        }
